@@ -471,7 +471,7 @@
                 <div class="flex-item">
                   <h3 class="card-title">About the HUC Data</h3>
                   <p>The map of HUCs is taken from the <a href="https://viewer.nationalmap.gov/basic/#/" target="_blank">USGS National Map Viewer</a> and aggregated at the HUC02 level, which is the "Region" level.  Each HUC is subdivided further into HUC04 (larger regions), HUC06, HUC08, HUC10, and HUC12 (very small creeks) codes.</p>
-                  <p>We used the <a href="https://developers.google.com/maps/documentation/geocoding/overview" target="_blank">Google Geocoding API</a> to locate the GPS coordinates of your birth location, then used those coordinates to query the <a href="https://waterservices.usgs.gov/rest/DV-Test-Tool.html" target="_blank">National Water Information System API</a> to find out what HUC those coordinates were in.</p>
+                  <p>We used the <a href="https://nominatim.org/" target="_blank">OpenStreetMap Nominatim geocoder</a> to locate the GPS coordinates of your birth location, then used those coordinates to query the <a href="https://waterservices.usgs.gov/rest/DV-Test-Tool.html" target="_blank">National Water Information System API</a> to find out what HUC those coordinates were in.</p>
                 </div>
                 <div class="flex-item">
                   <h3 class="card-title">About the Watershed Information</h3>
@@ -494,7 +494,6 @@
         
   
         <!-- run script -->
-        <script type='text/javascript' src='config.js'></script>
         <script src="https://unpkg.com/intersection-observer"></script>
         <script src="https://unpkg.com/scrollama"></script>
         <!-- <script src="./scripts/flubber-huc.js"></script> -->

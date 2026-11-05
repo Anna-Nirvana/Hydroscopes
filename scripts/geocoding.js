@@ -13,10 +13,7 @@ function fetchLocation() {
     var HUCmap = d3.select()
     var city = [];
     var state = [];
-    var geocodeAPIURL = "https://maps.googleapis.com/maps/api/geocode/json?address="; // New Google API URL
-    // Old Mapquest API URL// "https://open.mapquestapi.com/geocoding/v1/address?key=NkGrSo9aZDYlEaOv3pNN3lvFxuBFmCdK&location=";
-    var key = "&key=AIzaSyCLfNu4XdJ_VqyDS3DIlq5DqAKp04S2g8Q";
-    //var key = config.key;
+    var geocodeAPIURL = "https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q=";
     var geocode = [];
     var nwisAPIURL = "https://waterservices.usgs.gov/nwis/dv/?format=json&bBox="
     var lat = [];
@@ -30,11 +27,6 @@ function fetchLocation() {
 
 
 
-    // MAPQUEST FORMAT
-    // http://open.mapquestapi.com/geocoding/v1/address?key=KEY&location=Washington,DC
-
-    // GOOGLE FORMAT
-    // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY
 
     /////////////////////////////////
     // Get data for Meet Your Watershed blocks
@@ -1051,15 +1043,15 @@ function fetchLocation() {
 
     /////////////////////////////////
     // Compile Geocoding URL
-    var geocode = geocodeAPIURL + "+" + city + ",+" + state + key;
+    var geocode = geocodeAPIURL + encodeURIComponent(city + ", " + state);
 
     /////////////////////////////////
     // Call API
     d3.json(geocode, function(error, apiData) { 
    
 
-        lat = apiData.results[0].geometry.location.lat;
-        long = apiData.results[0].geometry.location.lng;
+        lat = parseFloat(apiData[0].lat);
+        long = parseFloat(apiData[0].lon);
       
         
         birthCoord.push({
